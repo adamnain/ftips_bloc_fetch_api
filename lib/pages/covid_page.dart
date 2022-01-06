@@ -33,9 +33,9 @@ class _CovidPageState extends State<CovidPage> {
         child: BlocListener<CovidBloc, CovidState>(
           listener: (context, state) {
             if (state is CovidError) {
-              Scaffold.of(context).showSnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(state.message),
+                  content: Text(state.message!),
                 ),
               );
             }
@@ -50,6 +50,8 @@ class _CovidPageState extends State<CovidPage> {
                 return _buildCard(context, state.covidModel);
               } else if (state is CovidError) {
                 return Container();
+              } else {
+                return Container();
               }
             },
           ),
@@ -60,7 +62,7 @@ class _CovidPageState extends State<CovidPage> {
 
   Widget _buildCard(BuildContext context, CovidModel model) {
     return ListView.builder(
-      itemCount: model.countries.length,
+      itemCount: model.countries!.length,
       itemBuilder: (context, index) {
         return Container(
           margin: EdgeInsets.all(8.0),
@@ -69,12 +71,12 @@ class _CovidPageState extends State<CovidPage> {
               margin: EdgeInsets.all(8.0),
               child: Column(
                 children: <Widget>[
-                  Text("Country: ${model.countries[index].country}"),
+                  Text("Country: ${model.countries![index].country}"),
                   Text(
-                      "Total Confirmed: ${model.countries[index].totalConfirmed}"),
-                  Text("Total Deaths: ${model.countries[index].totalDeaths}"),
+                      "Total Confirmed: ${model.countries![index].totalConfirmed}"),
+                  Text("Total Deaths: ${model.countries![index].totalDeaths}"),
                   Text(
-                      "Total Recovered: ${model.countries[index].totalRecovered}"),
+                      "Total Recovered: ${model.countries![index].totalRecovered}"),
                 ],
               ),
             ),
