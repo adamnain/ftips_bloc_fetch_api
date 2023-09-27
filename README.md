@@ -1,5 +1,7 @@
 # ftips_bloc_fetch_api
 
+Blog post: https://adamnain.medium.com/flutter-tips-fetching-data-from-the-api-using-bloc-8289debfbf40
+
 A new Flutter project.
 
 ## Getting Started
